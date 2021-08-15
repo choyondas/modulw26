@@ -51,12 +51,20 @@
 
 
     <script>
-        function getInputValue() {
-            const deposit = document.getElementById('deposit-input');
-            const depositAmountText = deposit.value;
-            const depositMoney = parseFloat(depositAmountText);
-            deposit.value = '';
-            return depositMoney;
+        function getInputValue(inputId) {
+            const inputField = document.getElementById(inputId);
+            const inputFieldText = inputField.value;
+            const inputAmount = parseFloat(inputFieldText);
+            inputField.value = '';
+            return inputAmount;
+        }
+
+        function totalUpdateField(totalFieldId, depositMoney) {
+            const totalDeposit = document.getElementById(totalFieldId);
+            const TotalDepositAmount = totalDeposit.innerText;
+            const TotalDepositMoney = parseFloat(TotalDepositAmount);
+            const newDepositMoney = depositMoney + TotalDepositMoney;
+            totalDeposit.innerText = newDepositMoney;
         }
 
         document.getElementById('deposit-button').addEventListener('click', function() {
@@ -66,16 +74,14 @@
             // const depositMoney = parseFloat(depositAmountText);
             // console.log(depositMoney);
 
-            const depositMoney = getInputValue();
+            const depositMoney = getInputValue('deposit-input');
+            totalUpdateField('total-deposit', depositMoney);
+            // const totalDeposit = document.getElementById('total-deposit');
+            // const TotalDepositAmount = totalDeposit.innerText;
+            // const TotalDepositMoney = parseFloat(TotalDepositAmount);
+            // const newDepositMoney = depositMoney + TotalDepositMoney;
 
-            const totalDeposit = document.getElementById('total-deposit');
-            const TotalDepositAmount = totalDeposit.innerText;
-            const TotalDepositMoney = parseFloat(TotalDepositAmount);
-
-
-
-            const newDepositMoney = depositMoney + TotalDepositMoney;
-            totalDeposit.innerText = newDepositMoney;
+            // totalDeposit.innerText = newDepositMoney;
 
             const balance = document.getElementById('balance');
             const balanceAmount = parseFloat(balance.innerText);
@@ -87,21 +93,27 @@
         })
 
         document.getElementById('withdraw').addEventListener('click', function() {
-            const withdrawInput = document.getElementById('withdrawInput');
-            const withdrawMoney = parseFloat(withdrawInput.value);
+            // const withdrawInput = document.getElementById('withdrawInput');
+            // const withdrawMoneyText = withdrawInput.value;
+            // const withdrawMoney = parseFloat(withdrawMoneyText);
+            const withdrawMoney = getInputValue('withdrawInput');
 
-
-            const previousWithdraw = document.getElementById('totalWithdraw');
+            /* const previousWithdraw = document.getElementById('totalWithdraw');
             const withdrawTotal = parseFloat(previousWithdraw.innerText);
             const totalNewWithdraw = withdrawMoney + withdrawTotal;
-            previousWithdraw.innerText = totalNewWithdraw;
+            previousWithdraw.innerText = totalNewWithdraw; */
+            totalUpdateField('totalWithdraw', withdrawMoney)
+
+
+
+
             const balance = document.getElementById('balance');
             const balanceAmount = parseFloat(balance.innerText);
             const totalBalance = balanceAmount - withdrawMoney;
             balance.innerText = totalBalance;
 
 
-            withdrawInput.value = '';
+            // withdrawInput.value = '';
 
 
         })
