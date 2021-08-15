@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="w-3/4 text-center py-4 mx-auto ">
+        <h1 class="text-4xl">Let's get some <span class=" text-red-300">Moooooooooney!!!!</span></h1>
+
+        <div id="container" class="grid grid-cols-3 gap-4 ">
+            <div class="bg-green-300 py-4 rounded my-4">
+                <h2 class="text-white text-3xl">Deposit</h2>
+                <h1 class="text-white text-4xl font-bold">$<span id="total-deposit">000</span> </h1>
+            </div>
+            <div class="bg-yellow-300 py-4 rounded my-4">
+                <h2 class="text-white text-3xl">Withdraw</h2>
+                <h1 class="text-white text-4xl font-bold">$<span id="totalWithdraw">000</span> </h1>
+            </div>
+            <div class="bg-blue-300 py-4 rounded my-4">
+                <h2 class="text-white text-3xl">Balance</h2>
+                <h1 class="text-white text-4xl font-bold">$<span id="balance">1200</span> </h1>
+            </div>
+
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 ">
+            <div class="bg-red-400 p-4 py-10 rounded shadow-2xl">
+                <h1 class="text-3xl py-2 mb-2 font-bold">Please Deposit</h1>
+                <input id="deposit-input" class="w-4/5 px-2 py-2" type="text " placeholder="$ deposit amount">
+                <button id="deposit-button" class="block mx-auto bg-blue-600 rounded  px-4 py-2 my-4 text-white font-bold">Deposit</button>
+            </div>
+
+            <div class="bg-pink-600 p-4 py-10 rounded shadow-2xl">
+                <h1 class="text-3xl py-2 mb-2 font-bold">Please Withdraw</h1>
+                <input id="withdrawInput" class="w-4/5 px-2 py-2" type="text " placeholder="$ withdraw amount">
+                <button id="withdraw" class="block mx-auto bg-purple-600 rounded  px-4 py-2 my-4 text-white font-bold">Withdraw</button>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <script>
+        function num() {
+
+        }
+
+        document.getElementById('deposit-button').addEventListener('click', function() {
+
+            const deposit = document.getElementById('deposit-input');
+            const depositMoney = parseFloat(deposit.value);
+            // console.log(depositMoney);
+
+            const totalDeposit = document.getElementById('total-deposit');
+            const TotalDepositAmount = totalDeposit.innerText;
+            const TotalDepositMoney = parseFloat(TotalDepositAmount);
+
+
+
+            const newDepositMoney = depositMoney + TotalDepositMoney;
+            totalDeposit.innerText = newDepositMoney;
+
+            const balance = document.getElementById('balance');
+            const balanceAmount = parseFloat(balance.innerText);
+            const totalBalance = balanceAmount + depositMoney
+
+            balance.innerText = totalBalance;
+
+            deposit.value = '';
+        })
+
+        document.getElementById('withdraw').addEventListener('click', function() {
+            const withdrawInput = document.getElementById('withdrawInput');
+            const withdrawMoney = parseFloat(withdrawInput.value);
+
+
+            const previousWithdraw = document.getElementById('totalWithdraw');
+            const withdrawTotal = parseFloat(previousWithdraw.innerText);
+            const totalNewWithdraw = withdrawMoney + withdrawTotal;
+            previousWithdraw.innerText = totalNewWithdraw;
+            const balance = document.getElementById('balance');
+            const balanceAmount = parseFloat(balance.innerText);
+            const totalBalance = balanceAmount - withdrawMoney;
+            balance.innerText = totalBalance;
+
+
+            withdrawInput.value = '';
+
+
+        })
+    </script>
+</body>
+
+</html>
