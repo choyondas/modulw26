@@ -51,15 +51,22 @@
 
 
     <script>
-        function num() {
-
+        function getInputValue() {
+            const deposit = document.getElementById('deposit-input');
+            const depositAmountText = deposit.value;
+            const depositMoney = parseFloat(depositAmountText);
+            deposit.value = '';
+            return depositMoney;
         }
 
         document.getElementById('deposit-button').addEventListener('click', function() {
 
-            const deposit = document.getElementById('deposit-input');
-            const depositMoney = parseFloat(deposit.value);
+            // const deposit = document.getElementById('deposit-input');
+            // const depositAmountText = deposit.value;
+            // const depositMoney = parseFloat(depositAmountText);
             // console.log(depositMoney);
+
+            const depositMoney = getInputValue();
 
             const totalDeposit = document.getElementById('total-deposit');
             const TotalDepositAmount = totalDeposit.innerText;
@@ -76,7 +83,7 @@
 
             balance.innerText = totalBalance;
 
-            deposit.value = '';
+            // deposit.value = '';
         })
 
         document.getElementById('withdraw').addEventListener('click', function() {
