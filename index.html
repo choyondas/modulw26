@@ -45,6 +45,9 @@
 
 
         </div>
+        <div>
+            <button id="previousPage" class="block mx-auto bg-red-400 hover:bg-red-600 rounded  px-4 py-2 my-4 text-white font-bold">Back To Previous Page</button>
+        </div>
 
 
     </section>
@@ -138,6 +141,7 @@
             // const balanceAmount = parseFloat(balance.innerText);
             // const totalBalance = balanceAmount - withdrawMoney;
             // balance.innerText = totalBalance;
+
             const withdrawMoney = getInputValue('withdrawInput');
             const balanceAmount = currentBalance();
             if (withdrawMoney > 0 && withdrawMoney <= balanceAmount) {
@@ -150,7 +154,10 @@
 
             // withdrawInput.value = '';
 
+        })
 
+        document.getElementById('previousPage').addEventListener('click', function() {
+            window.location.href = 'login.html';
         })
     </script>
 </body>
